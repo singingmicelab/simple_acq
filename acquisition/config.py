@@ -8,7 +8,7 @@ data_dir = 'E:/videos/test' # Directory where data will be saved.
 
 # Hardware config.
 
-camera_IDs = {1: '22257446'}
+camera_IDs = {1: '22463269'}
 
 # Bonsai path config.
 

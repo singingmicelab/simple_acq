@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<WorkflowBuilder Version="2.8.2"
+<WorkflowBuilder Version="2.8.5"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
                  xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
@@ -79,7 +79,7 @@
             <Expression xsi:type="Combinator">
               <Combinator xsi:type="spk:SpinnakerCapture">
                 <spk:Index xsi:nil="true" />
-                <spk:SerialNumber>22257446</spk:SerialNumber>
+                <spk:SerialNumber>22463269</spk:SerialNumber>
                 <spk:ColorProcessing>NoColorProcessing</spk:ColorProcessing>
               </Combinator>
             </Expression>
@@ -122,20 +122,17 @@
           <cv:Overwrite>false</cv:Overwrite>
         </Combinator>
       </Expression>
-      <Expression xsi:type="Combinator">
-        <Combinator xsi:type="cv:ConvertColor">
-          <cv:Conversion>BayerBG2BgrVng</cv:Conversion>
-        </Combinator>
-      </Expression>
       <Expression xsi:type="MemberSelector">
         <Selector>ChunkData.Timestamp</Selector>
       </Expression>
-      <Expression xsi:type="io:CsvWriter">
-        <io:FileName>debug_timestamp/cam0_.csv</io:FileName>
-        <io:Append>false</io:Append>
-        <io:Overwrite>true</io:Overwrite>
-        <io:Suffix>Timestamp</io:Suffix>
-        <io:IncludeHeader>false</io:IncludeHeader>
+      <Expression xsi:type="Disable">
+        <Builder xsi:type="io:CsvWriter">
+          <io:FileName>debug_timestamp/cam0_.csv</io:FileName>
+          <io:Append>false</io:Append>
+          <io:Overwrite>true</io:Overwrite>
+          <io:Suffix>Timestamp</io:Suffix>
+          <io:IncludeHeader>false</io:IncludeHeader>
+        </Builder>
       </Expression>
     </Nodes>
     <Edges>
@@ -150,10 +147,9 @@
       <Edge From="9" To="10" Label="Source1" />
       <Edge From="10" To="11" Label="Source1" />
       <Edge From="12" To="13" Label="Source1" />
-      <Edge From="12" To="16" Label="Source1" />
+      <Edge From="12" To="15" Label="Source1" />
       <Edge From="13" To="14" Label="Source1" />
-      <Edge From="13" To="15" Label="Source1" />
-      <Edge From="16" To="17" Label="Source1" />
+      <Edge From="15" To="16" Label="Source1" />
     </Edges>
   </Workflow>
 </WorkflowBuilder>

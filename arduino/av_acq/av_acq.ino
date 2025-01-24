@@ -1,7 +1,7 @@
 int pinState = 0;
 String MyString = "0";
-int camPin = 12;
-int micPin = 13;
+int camPin = 11;
+int micPin = 12;
 int MyDelay = 9926;
 
 void setup() {

@@ -26,6 +26,8 @@ from subprocess import Popen
 
 from config import subjects, data_dir, camera_IDs, bonsai_path, workflow_path
 
+os.makedirs(data_dir, exist_ok=True)
+
 datetime_str = datetime.now().strftime('%Y-%m-%d-%H%M%S')
 
 command = bonsai_path + ' ' +  workflow_path  + ' --start'
@@ -66,7 +68,8 @@ while not all(pipes_open):
             if pipe.split('\\')[-1] in os.listdir(r'\\.\pipe'):
                 pipes_open[i] = True
                 video_file_path = os.path.join(data_dir, f'{datetime_str}_{subject}_%05d.mp4')
-                ffmpeg_processes.append(Popen(r'ffmpeg -y -f rawvideo -vcodec rawvideo -s 1616x1240 -pix_fmt bayer_rggb8 -r 50 -i {} -c:v h264_nvenc -profile:v high -preset slow -an -f segment -segment_time 3600 -reset_timestamps 1 {}'.format(pipe, video_file_path)))
+                # ffmpeg_processes.append(Popen(r'ffmpeg -y -f rawvideo -vcodec rawvideo -s 1616x1240 -pix_fmt bayer_srggb8 -r 50 -i {} -c:v h264_nvenc -profile:v high -preset slow -an -f segment -segment_time 3600 -reset_timestamps 1 {}'.format(pipe, video_file_path)))
+                ffmpeg_processes.append(Popen(r'ffmpeg -y -f rawvideo -vcodec rawvideo -s 1616x1240 -pix_fmt gray -r 50 -i {} -c:v h264_nvenc -profile:v high -preset slow -an -f segment -segment_time 3600 -reset_timestamps 1 {}'.format(pipe, video_file_path)))
     time.sleep(0.1)
 
 # Wait untill Bonsai has stopped running.
